@@ -1,5 +1,5 @@
 import './App.css';
-import PanelAndScreen from './Components/PanelAndScreen';
+import PanelAndScreen from './Modules/00 OnBoarding/View/PanelAndScreen';
 
 function App() {
 

@@ -1,12 +1,11 @@
-import '../Styles/PanelAndScreenStyle.css';
-import applogo from '../Assets/applogo.png';
+import '../Style/PanelAndScreen.css';
+import applogo from '../../../Assets/applogo.png';
 import { useState } from 'react';
-import Page1 from '../Pages/Page1';
-import Page2 from '../Pages/Page2';
-import Page3 from '../Pages/Page3';
-import Page4 from '../Pages/Page4';
-import Page5 from '../Pages/Page5';
-import Page6 from '../Pages/Page6';
+import ViewAllEmployees from '../../01 View All Employees/View/ViewEmployees';
+import ViewAttendance from '../../02 View Attendance/View/ViewAttendance';
+import ViewPayslip from '../../03 View Payslips/View/ViewPayslip';
+import ManageLeaves from '../../04 Manage Leaves/View/ManageLeaves';
+import LeaveRequests from '../../05 Leave Requests/View/LeaveRequests';
 
 export default function PanelAndScreen(){
 
@@ -19,17 +18,15 @@ export default function PanelAndScreen(){
   const renderPage = () => {
     switch (highlighted) {
       case 'item-1':
-        return <Page1 />;
+        return <ViewAllEmployees />;
       case 'item-2':
-        return <Page2 />;
+        return <ViewAttendance />;
       case 'item-3':
-        return <Page3 />;
+        return <ViewPayslip />;
       case 'item-4':
-        return <Page4 />;
+        return <ManageLeaves />;
       case 'item-5':
-        return <Page5 />;
-      case 'item-6':
-        return <Page6 />;
+        return <LeaveRequests />;
       default:
         return null;
     }
@@ -73,21 +70,14 @@ export default function PanelAndScreen(){
         className={highlighted === 'item-4' ? 'menuItemHighlighted' : 'menuItem'}
         onClick={() => handleClick('item-4')}
       >
-        Manage Attendance
+        Manage Leaves
       </div>
       <div
         id='item-5'
         className={highlighted === 'item-5' ? 'menuItemHighlighted' : 'menuItem'}
         onClick={() => handleClick('item-5')}
       >
-        Manage Meetings
-      </div>
-      <div
-        id='item-6'
-        className={highlighted === 'item-6' ? 'menuItemHighlighted' : 'menuItem'}
-        onClick={() => handleClick('item-6')}
-      >
-        Employee Leaves
+        Leave Requests
       </div>
 
       </div>

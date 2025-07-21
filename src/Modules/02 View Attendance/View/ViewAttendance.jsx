@@ -1,5 +1,9 @@
-import '../Styles/Page2Style.css';
-import '../Styles/Page1Style.css';
+//page 2 style.css
+import '../../02 View Attendance/Style/ViewAttendance.css';
+//page 1 style.css
+import '../../01 View All Employees/Style/ViewEmployees.css';
+
+
 
 export default function Page2(){
 

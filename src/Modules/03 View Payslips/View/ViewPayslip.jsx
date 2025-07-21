@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import '../Styles/Page2Style.css';
-import '../Styles/Page3Style.css';
+import '../../02 View Attendance/Style/ViewAttendance.css';
+import '../../03 View Payslips/Style/ViewPayslip.css';
 
 
 export default function Page3(){

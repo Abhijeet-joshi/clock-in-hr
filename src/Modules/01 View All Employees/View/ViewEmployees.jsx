@@ -1,7 +1,7 @@
-import '../Styles/Page1Style.css'
+import '../Style/ViewEmployees.css'
 
 
-export default function Page1(){
+export default function ViewAllEmployees(){
 
 var employees = [
 {
