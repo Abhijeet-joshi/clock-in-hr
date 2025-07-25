@@ -1,0 +1,29 @@
+.searchFieldDiv{
+    display: flex;
+    flex-direction: row;
+}
+
+input{
+    min-width: 200px;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    border-radius: 6px;
+    margin: 15px;
+    padding: 5px;
+}
+
+input::placeholder{
+    color: grey;
+}
+
+.button{
+    min-width: 90px;
+    background-color: #222f3e;
+    color: white;
+    border: 1px solid #222f3e;
+    border-radius: 6px;
+    margin: 15px;
+    padding: 5px;
+    cursor: pointer;
+}
