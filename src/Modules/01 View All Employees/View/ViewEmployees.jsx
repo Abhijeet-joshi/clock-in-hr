@@ -1,4 +1,5 @@
 import '../Style/ViewEmployees.css'
+import '../../../Common Utilities/tableLayout.css';
 
 
 export default function ViewAllEmployees(){
