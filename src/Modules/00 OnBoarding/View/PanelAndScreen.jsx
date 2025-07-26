@@ -10,6 +10,7 @@ import LeaveRequests from '../../05 Leave Requests/View/LeaveRequests';
 export default function PanelAndScreen(){
 
   const [highlighted, setHighlighted] = useState('item-1');
+  const [panelVis, setPanelVis] = useState(true);
 
   const handleClick = (id) => {
     setHighlighted(id);
