@@ -31,7 +31,6 @@ export default function Page5(){
             <div className='button'>Search</div>
             </div>
         
-
         <table className="tableStyle">
                 <thead className='tableHead'>
                     <tr>

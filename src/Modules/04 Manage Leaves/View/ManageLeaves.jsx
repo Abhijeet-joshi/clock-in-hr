@@ -29,6 +29,7 @@ export default function Page4(){
             <div className='button'>Search</div>
             </div>
         
+        <p className='dateTag'>Leaves of : 26/07/2025</p>
 
         <table className="tableStyle">
                 <thead className='tableHead'>

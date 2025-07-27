@@ -27,3 +27,11 @@ input::placeholder{
     padding: 5px;
     cursor: pointer;
 }
+
+.dateTag{
+    text-align: start;
+    color: black;
+    font-weight: 500;
+    margin: 15px;
+    padding: 5px;
+}

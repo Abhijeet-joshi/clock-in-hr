@@ -1,5 +1,6 @@
-import '../Style/ViewEmployees.css'
+import '../Style/ViewEmployees.css';
 import '../../../Common Utilities/tableLayout.css';
+//import { useNavigate } from 'react-router-dom';
 
 export default function ViewAllEmployees(){
 
@@ -22,7 +23,14 @@ var employees = [
 },
     ];
 
-    
+//     const navigate = useNavigate();
+
+//   const goToPage = (empData) => {
+//     console.log(empData);
+//     alert("ok");
+//     navigate('/ViewEmployee');
+//   };
+
 
     return (
         
@@ -45,9 +53,9 @@ var employees = [
                         <td className='empData'>{empData.dept}</td>
                         <td className='empData'>{empData.desig}</td>
                         <td className='empData'>{empData.email}</td>
-                        <td className='highlightedData' onClick={()=>{
-                            
-                        }}>View Employee</td>
+                        <td className='highlightedData' >
+                            <button>View Employee</button>
+                        </td>
                         </tr>
                     })}
                 </tbody>
