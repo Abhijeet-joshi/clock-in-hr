@@ -1,7 +1,6 @@
 import '../Style/ViewEmployees.css'
 import '../../../Common Utilities/tableLayout.css';
 
-
 export default function ViewAllEmployees(){
 
 var employees = [
@@ -23,9 +22,6 @@ var employees = [
 },
     ];
 
-    function getEmployees(){
-        
-    }
     
 
     return (
@@ -49,7 +45,9 @@ var employees = [
                         <td className='empData'>{empData.dept}</td>
                         <td className='empData'>{empData.desig}</td>
                         <td className='empData'>{empData.email}</td>
-                        <td className='highlightedData'>View Employee</td>
+                        <td className='highlightedData' onClick={()=>{
+                            
+                        }}>View Employee</td>
                         </tr>
                     })}
                 </tbody>

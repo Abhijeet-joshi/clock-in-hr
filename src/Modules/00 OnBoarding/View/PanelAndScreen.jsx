@@ -1,7 +1,7 @@
 import '../Style/PanelAndScreen.css';
 import applogo from '../../../Assets/applogo.png';
 import { useState } from 'react';
-import ViewAllEmployees from '../../01 View All Employees/View/ViewEmployees';
+import ViewAllEmployees from '../../01 View All Employees/View/ViewAllEmployees';
 import ViewAttendance from '../../02 View Attendance/View/ViewAttendance';
 import ViewPayslip from '../../03 View Payslips/View/ViewPayslip';
 import ManageLeaves from '../../04 Manage Leaves/View/ManageLeaves';
@@ -10,7 +10,6 @@ import LeaveRequests from '../../05 Leave Requests/View/LeaveRequests';
 export default function PanelAndScreen(){
 
   const [highlighted, setHighlighted] = useState('item-1');
-  const [panelVis, setPanelVis] = useState(true);
 
   const handleClick = (id) => {
     setHighlighted(id);
