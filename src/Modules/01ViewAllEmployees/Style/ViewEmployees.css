@@ -24,3 +24,29 @@
     box-shadow: 0 4px 16px rgba(0,0,0,0.3);
 }
 
+.statusMessage {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.2rem;
+}
+
+.statusMessage.error {
+    color: red;
+}
+
+.viewContainer {
+    padding: 20px;
+}
+
+.actionButton {
+    padding: 6px 12px;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.actionButton:hover {
+    background-color: #1565c0;
+}
