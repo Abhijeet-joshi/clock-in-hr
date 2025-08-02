@@ -1,0 +1,117 @@
+/* Layout Container */
+.mainPage {
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Sidebar Container */
+.container {
+  height: 100%;
+  background-color: #222f3e;
+  padding: 15px;
+  width: 350px;
+  transition: transform 0.3s ease-in-out;
+  overflow-y: auto;
+  z-index: 999;
+}
+
+/* Sidebar Open/Closed */
+.container.closed {
+  transform: translateX(-100%);
+}
+
+.container.open {
+  transform: translateX(0%);
+}
+
+/* Content Area */
+.contentArea {
+  flex-grow: 1;
+}
+
+/* When sidebar is open */
+.sidebar-open .contentArea {
+  margin-left: 0px; /* Matches sidebar width */
+}
+
+/* When sidebar is closed */
+.sidebar-closed .contentArea {
+  margin-left: -280px;
+}
+
+/* Hamburger Button */
+.hamburgerBtn {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  z-index: 1000;
+  background-color: #feca57;
+  border: none;
+  padding: 10px 15px;
+  font-size: 24px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* App Logo */
+.appImage {
+  width: 50px;
+  height: 50px;
+}
+
+/* Header Title Section */
+.divTitle {
+  display: flex;
+  flex-direction: row;
+  align-content: start;
+}
+
+.headerText {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  color: white;
+}
+
+.title {
+  color: white;
+  font-size: 25px;
+  padding-left: 20px;
+  margin: 0;
+  unicode-bidi: isolate;
+}
+
+.subTitle {
+  color: #feca57;
+  font-size: 18px;
+  padding-left: 20px;
+  margin: 0;
+  unicode-bidi: isolate;
+}
+
+/* Menu Items */
+.menuItemHighlighted {
+  background-color: #feca57;
+  border-radius: 10px;
+  padding: 7px;
+  color: black;
+  font-weight: 500;
+  font-size: 20px;
+  text-align: start;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.menuItem {
+  background-color: transparent;
+  padding: 7px;
+  color: white;
+  font-weight: 500;
+  font-size: 20px;
+  text-align: start;
+  cursor: pointer;
+  margin-bottom: 10px;
+}

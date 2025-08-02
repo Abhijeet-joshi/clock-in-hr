@@ -1,4 +1,4 @@
-import '../../../Common Utilities/tableLayout.css';
+import '../../../CommonUtilities/tableLayout.css';
 
 export default function Page2(){
 

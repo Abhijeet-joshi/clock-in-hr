@@ -1,4 +1,4 @@
-import '../../../Common Utilities/tableLayout.css';
+import '../../../CommonUtilities/tableLayout.css';
 import '../Style/LeaveRequests.css';
 
 export default function Page5(){
@@ -30,6 +30,8 @@ export default function Page5(){
             <input placeholder='Enter Employee ID'></input>
             <div className='button'>Search</div>
             </div>
+
+            <p className='dateTag'>Leave Requests of : 26/07/2025</p>
         
         <table className="tableStyle">
                 <thead className='tableHead'>

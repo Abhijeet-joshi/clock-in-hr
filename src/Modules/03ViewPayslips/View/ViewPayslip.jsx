@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import '../../02 View Attendance/Style/ViewAttendance.css';
-import '../../03 View Payslips/Style/ViewPayslip.css';
+import '../../02ViewAttendance/Style/ViewAttendance.css';
+import '../Style/ViewPayslip.css';
 
 
 export default function Page3(){
@@ -22,9 +22,9 @@ export default function Page3(){
                 <p className='employeeDetails'>Software Development</p>
                 <p className='employeeDetails'>SDE - 3</p>
                 <div className='payslipDetDiv'>
+
                     <div className='paySlipTitleRow'>
                         <p className='employeeName'>Employee Payslip</p>
-                        
                     </div>
                     
                     <p className='employeeDetails'>June - 2025</p>
@@ -34,6 +34,7 @@ export default function Page3(){
                     <br/>
                     <p className='employeeDetails'>Paid Leaves - 1</p>
                     <p className='employeeDetails'>Casual Leaves - 2</p>
+                    
                 </div>
             </div> : <div></div>
             }
