@@ -9,12 +9,14 @@ export default function Page3(){
 
     return (
         
-        <div>   
+        <div>
+            <div className='searchFieldDiv'>
             <input placeholder='Enter Employee ID'></input>
             <input placeholder='Enter Month-Year'></input>
             <div className='button' onClick={()=>{
                 setVis(true);
             }}>Search</div>
+            </div>   
             
             {
             vis==true ? <div className='payslipContainer'>

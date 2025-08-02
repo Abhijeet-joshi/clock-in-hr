@@ -10,17 +10,30 @@ export default function ViewAllEmployees() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    // Fetch employee data from backend
-    useEffect(() => {
+    useEffect(() => { 
         const fetchEmployees = async () => {
             try {
-                const response = await fetch('http://localhost:8080/employees');
+                const username = "user"; // 🔐 Replace with actual username
+                const password = "17560f3c-bf17-4a6d-888a-b61826f4e74d"; // 🔐 Replace with actual password
+                const credentials = btoa(`${username}:${password}`);
+
+                const response = await fetch('http://localhost:8080/employees', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Basic ${credentials}`,
+                    },
+                    credentials: 'include' // Only if backend allows credentials
+                });
+
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
+
                 const data = await response.json();
                 setEmployees(data);
             } catch (err) {
+                console.error('Fetch error:', err);
                 setError(err.message);
             } finally {
                 setLoading(false);
@@ -30,7 +43,6 @@ export default function ViewAllEmployees() {
         fetchEmployees();
     }, []);
 
-    // Render loading or error state
     if (loading) return <div className="statusMessage">Loading employees...</div>;
     if (error) return <div className="statusMessage error">Error: {error}</div>;
 
@@ -41,26 +53,26 @@ export default function ViewAllEmployees() {
             <table className="tableStyle">
                 <thead className="tableHead">
                     <tr>
-                        <td className="headData">ID</td>
-                        <td className="headData">Name</td>
-                        <td className="headData">Department</td>
-                        <td className="headData">Designation</td>
-                        <td className="headData">Email</td>
-                        <td className="headData">Actions</td>
+                        <th className="headData">ID</th>
+                        <th className="headData">Name</th>
+                        <th className="headData">Department</th>
+                        <th className="headData">Designation</th>
+                        <th className="headData">Email</th>
+                        <th className="headData">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     {employees.map((emp) => (
                         <tr key={emp.empId}>
                             <td className="empData">{emp["empId"]}</td>
-                            <td className="empData">{emp["empName"]}</td>
-                            <td className="empData">{emp["department"]}</td>
-                            <td className="empData">{emp["designation"]}</td>
-                            <td className="empData">{emp["email"]}</td>
+                            <td className="empData">{emp["empId"]}</td>
+                            <td className="empData">{emp["empId"]}</td>
+                            <td className="empData">{emp["empId"]}</td>
+                            <td className="empData">{emp["empId"]}</td>
                             <td className="highlightedData">
                                 <button
                                     className="actionButton"
-                                    onClick={() => navigate(`/ViewEmployee`)}
+                                    onClick={() => navigate(`/ViewEmployee/${emp.empId}`)}
                                 >
                                     View Employee
                                 </button>

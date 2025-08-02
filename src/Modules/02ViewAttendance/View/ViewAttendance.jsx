@@ -1,4 +1,5 @@
 import '../../../CommonUtilities/tableLayout.css';
+import '../Style/ViewAttendance.css';
 
 export default function Page2(){
 
