@@ -1,65 +1,22 @@
 /* Layout Container */
-.mainPage {
+.fullPage {
   height: 100vh;
   display: flex;
   flex-direction: row;
-  position: relative;
-  transition: all 0.3s ease-in-out;
 }
 
 /* Sidebar Container */
-.container {
+.navigationPanel {
   height: 100%;
+  min-width: 350px;
   background-color: #222f3e;
   padding: 15px;
-  width: 350px;
-  transition: transform 0.3s ease-in-out;
-  overflow-y: auto;
-  z-index: 999;
-}
-
-/* Sidebar Open/Closed */
-.container.closed {
-  transform: translateX(-100%);
-}
-
-.container.open {
-  transform: translateX(0%);
-}
-
-/* Content Area */
-.contentArea {
-  flex-grow: 1;
-}
-
-/* When sidebar is open */
-.sidebar-open .contentArea {
-  margin-left: 0px; /* Matches sidebar width */
-}
-
-/* When sidebar is closed */
-.sidebar-closed .contentArea {
-  margin-left: -280px;
-}
-
-/* Hamburger Button */
-.hamburgerBtn {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  z-index: 1000;
-  background-color: #feca57;
-  border: none;
-  padding: 10px 15px;
-  font-size: 24px;
-  border-radius: 5px;
-  cursor: pointer;
 }
 
 /* App Logo */
 .appImage {
-  width: 50px;
-  height: 50px;
+  width: 65px;
+  height: 65px;
 }
 
 /* Header Title Section */
@@ -86,7 +43,7 @@
 
 .subTitle {
   color: #feca57;
-  font-size: 18px;
+  font-size: 14px;
   padding-left: 20px;
   margin: 0;
   unicode-bidi: isolate;

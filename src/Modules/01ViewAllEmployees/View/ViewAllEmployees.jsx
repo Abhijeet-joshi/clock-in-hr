@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../Style/ViewEmployees.css';
 import '../../../CommonUtilities/tableLayout.css';
 import '../../../CommonUtilities/commonStyles.css';
+import { useState, useEffect } from 'react';
 
 export default function ViewAllEmployees() {
     const navigate = useNavigate();
@@ -13,17 +13,11 @@ export default function ViewAllEmployees() {
     useEffect(() => { 
         const fetchEmployees = async () => {
             try {
-                const username = "user"; // 🔐 Replace with actual username
-                const password = "17560f3c-bf17-4a6d-888a-b61826f4e74d"; // 🔐 Replace with actual password
-                const credentials = btoa(`${username}:${password}`);
-
                 const response = await fetch('http://localhost:8080/employees', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Basic ${credentials}`,
                     },
-                    credentials: 'include' // Only if backend allows credentials
                 });
 
                 if (!response.ok) {
@@ -48,7 +42,6 @@ export default function ViewAllEmployees() {
 
     return (
         <div className="viewContainer">
-            <div className="appBar">All Employees</div>
 
             <table className="tableStyle">
                 <thead className="tableHead">
@@ -65,15 +58,13 @@ export default function ViewAllEmployees() {
                     {employees.map((emp) => (
                         <tr key={emp.empId}>
                             <td className="empData">{emp["empId"]}</td>
-                            <td className="empData">{emp["empId"]}</td>
-                            <td className="empData">{emp["empId"]}</td>
-                            <td className="empData">{emp["empId"]}</td>
-                            <td className="empData">{emp["empId"]}</td>
+                            <td className="empData">{emp["empName"]}</td>
+                            <td className="empData">{emp["department"]}</td>
+                            <td className="empData">{emp["designation"]}</td>
+                            <td className="empData">{emp["email"]}</td>
                             <td className="highlightedData">
                                 <button
-                                    className="actionButton"
-                                    onClick={() => navigate(`/ViewEmployee/${emp.empId}`)}
-                                >
+                                    onClick={() => navigate(`/ViewEmployee`)}>
                                     View Employee
                                 </button>
                             </td>

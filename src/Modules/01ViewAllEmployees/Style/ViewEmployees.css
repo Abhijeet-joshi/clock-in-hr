@@ -4,7 +4,7 @@
     bottom: 32px;
     width: 56px;
     height: 56px;
-    border-radius: 50%;
+    border-radius: 100%;
     background-color: #feca57;
     color: #222f3e;
     font-size: 2rem;
@@ -35,7 +35,7 @@
 }
 
 .viewContainer {
-    padding: 20px;
+    padding: 0px;
 }
 
 .actionButton {

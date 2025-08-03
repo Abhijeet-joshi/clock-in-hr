@@ -11,8 +11,8 @@ export default function Page3(){
         
         <div>
             <div className='searchFieldDiv'>
-            <input placeholder='Enter Employee ID'></input>
-            <input placeholder='Enter Month-Year'></input>
+            <input placeholder='Enter Employee ID'/>
+            <input placeholder='Enter Month-Year'/>
             <div className='button' onClick={()=>{
                 setVis(true);
             }}>Search</div>
