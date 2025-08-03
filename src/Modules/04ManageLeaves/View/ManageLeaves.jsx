@@ -24,8 +24,14 @@ export default function Page4(){
     return (
 
         <div>
+
             <div className='searchFieldDiv'>
             <input placeholder='Enter Employee ID'></input>
+            <div className='button'>Search</div>
+            </div>
+
+            <div className='searchFieldDiv'>
+            <input placeholder='Enter Date (DD/MM/YYYY)'></input>
             <div className='button'>Search</div>
             </div>
         

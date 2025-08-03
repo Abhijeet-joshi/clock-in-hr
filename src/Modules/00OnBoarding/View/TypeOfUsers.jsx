@@ -1,6 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
+import applogo from '../../../Assets/applogo.png';
 
 const USERS = [
   {
@@ -16,6 +17,7 @@ const cardStyles = {
     minHeight: '100vh',
     width: '100vw',
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#222f3e',
@@ -56,8 +58,17 @@ export default function UserTypeCards(){
   const navigate = useNavigate();
 
   return (
-
+  
   <div style={cardStyles.container}>
+    <div className='divTitle'>
+              <img src={applogo} alt="App Logo" className='appImage' />
+              <div className='headerText'>
+                <p className='title'>ClockIn</p>
+                <p className='subTitle'>An Easy HR Assistance App</p>
+              </div>
+    </div>
+    <br />
+    <br/>
     <div style={cardStyles.row}>
       {USERS.map((user) => (
         <div key={user.name} style={cardStyles.card} onClick={()=>{
@@ -71,6 +82,7 @@ export default function UserTypeCards(){
         </div>
       ))}
     </div>
+  
   </div>
 );
 
