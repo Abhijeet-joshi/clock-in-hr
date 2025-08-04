@@ -28,13 +28,13 @@ function EmployeeDetails() {
                         <div className="card shadow-sm p-4">
                             {/* Profile Section */}
                             <div className="text-center mb-4">
-                                {/* <img
-                                    src={employee.profileImage ? employee.profileImage : 'https://www.njwebnest.in/images/is-mark-zuckerberg.jpg'}
+                                <img
+                                    src='https://icons.veryicon.com/png/o/business/multi-color-financial-and-business-icons/user-139.png'
                                     alt="Profile"
                                     className="rounded-circle mb-3"
                                     width="120"
                                     height="120"
-                                /> */}
+                                />
                                 <h4 className="mb-1">{employee.empName || employee.emp_name}</h4>
                                 <p className="text-muted">Employee ID: {employee.empId || employee.emp_id}</p>
                             </div>
