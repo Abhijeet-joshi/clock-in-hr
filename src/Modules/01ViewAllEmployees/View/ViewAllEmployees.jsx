@@ -13,7 +13,7 @@ export default function ViewAllEmployees() {
     useEffect(() => { 
         const fetchEmployees = async () => {
             try {
-                const response = await fetch('http://localhost:8080/employees', {
+                const response = await fetch('http://localhost:8080/showEmp', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -42,7 +42,6 @@ export default function ViewAllEmployees() {
 
     return (
         <div className="viewContainer">
-
             <table className="tableStyle">
                 <thead className="tableHead">
                     <tr>
@@ -57,14 +56,15 @@ export default function ViewAllEmployees() {
                 <tbody>
                     {employees.map((emp) => (
                         <tr key={emp.empId}>
-                            <td className="empData">{emp["empId"]}</td>
-                            <td className="empData">{emp["empName"]}</td>
-                            <td className="empData">{emp["department"]}</td>
-                            <td className="empData">{emp["designation"]}</td>
-                            <td className="empData">{emp["email"]}</td>
+                            <td className="empData">{emp.empId}</td>
+                            <td className="empData">{emp.empName}</td>
+                            <td className="empData">{emp.department}</td>
+                            <td className="empData">{emp.designation}</td>
+                            <td className="empData">{emp.email}</td>
                             <td className="highlightedData">
                                 <button
-                                    onClick={() => navigate(`/ViewEmployee`)}>
+                                    onClick={() => navigate('/ViewEmployee', { state: { employee: emp } })}
+                                >
                                     View Employee
                                 </button>
                             </td>

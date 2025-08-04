@@ -9,7 +9,7 @@ import EmployeeLogin from './Modules/00OnBoarding/View/EmployeeLogin';
 import HRLogin from './Modules/00OnBoarding/View/LoginSignup';
 import EmployeeDashboard from './Modules/06Employee/views/dashboard';
 
-function App() {
+function App() { 
   return (
     <Router>
       <Routes>
