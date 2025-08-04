@@ -12,3 +12,28 @@
     cursor: pointer;
     color: green;
 }
+
+.status-button {
+  min-width: 100px;   /* fixed minimum width */
+  padding: 2px 4px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: default;
+  font-weight: 600;
+  text-align: center;
+  display: inline-block;
+}
+
+/* Different background colors for each status */
+.status-approved {
+  background-color: #4CAF50; /* green */
+}
+
+.status-pending {
+  background-color: #FF9800; /* orange */
+}
+
+.status-rejected {
+  background-color: #F44336; /* red */
+}

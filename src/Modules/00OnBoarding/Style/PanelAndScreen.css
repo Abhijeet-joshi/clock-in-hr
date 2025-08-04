@@ -1,16 +1,18 @@
 /* Layout Container */
 .fullPage {
-  height: 100vh;
   display: flex;
-  flex-direction: row;
+  min-height: 100vh;     /* Ensures at least viewport height */
+  height: auto;          /* Grows beyond viewport if needed */
 }
 
 /* Sidebar Container */
 .navigationPanel {
-  height: 100%;
   min-width: 350px;
   background-color: #222f3e;
   padding: 15px;
+  /* No fixed height here! */
+  display: flex;
+  flex-direction: column;
 }
 
 /* App Logo */
@@ -23,7 +25,7 @@
 .divTitle {
   display: flex;
   flex-direction: row;
-  align-content: start;
+  align-items: flex-start; /* Vertical alignment for logo & text */
 }
 
 .headerText {
@@ -71,4 +73,28 @@
   text-align: start;
   cursor: pointer;
   margin-bottom: 10px;
+}
+
+/* Main Content Area */
+.contentArea {
+  flex: 1;
+  padding: 30px;
+  /* Add below if you want only the right side to be scrollable 
+  overflow-y: auto;
+  */
+  /* background: #f7f7f7; // Optional, for visual separation */
+}
+
+/* Responsive (optional) */
+@media (max-width: 900px) {
+  .navigationPanel {
+    min-width: 220px;
+    padding: 10px;
+  }
+  .title, .subTitle {
+    padding-left: 10px;
+  }
+  .contentArea {
+    padding: 10px;
+  }
 }
