@@ -83,31 +83,13 @@ const EmployeeLogin = ({expectedDepartment}) => {
     try{
 
        const response = await axios.get('http://localhost:8080/showEmp');
-        const user = response.data.find(
-        (emp) => (emp.email === email || emp.empName === email) && emp.password === password
-      );
+        const user = response.data.find((emp) => (emp.email === email || emp.empName === email) && emp.password === password);
 
-      if (!user) return setError('Invalid credentials');
-
-      if (user.department.toLowerCase() === expectedDepartment.toLowerCase()&& user.department.toLowerCase() !== expectedDepartment.toLowerCase()) {
-        return setError(`Access Denied: It is an authorized ${expectedDepartment.toUpperCase()} user`);
+      if (!user){
+        return setError('Invalid credentials');
+      } else{
+        navigate('/EmpDash', { state: { employeeId: user.empId, employee: user } });
       }
-     
-    
-
-      if (expectedDepartment !== 'hr') {
-        navigate('/', { state: { user } });
-      }
-      else if (expectedDepartment === 'hr') {
-
-        navigate('/EmpDash', { state: { user } });
-        
-      }
-      else {
-        navigate('/EmpDash', { state: { user } });
-      }
-
-
 
     }
     catch (err) {

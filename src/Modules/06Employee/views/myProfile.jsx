@@ -1,60 +1,152 @@
-// src/Modules/06Employee/views/MyProfile.jsx
-import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+// src/Modules/06Employee/views/EmployeeDetails.jsx
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 
-function MyProfile() {
+const EmployeeDetails = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const employee = location.state?.employee;
 
-  if (!employee) {
+  const empId = location.state?.employeeId;
+
+  const [employee, setEmployee] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (!empId) {
+      setError("No employee ID found. Please go back and select an employee.");
+      setLoading(false);
+      return;
+    }
+
+    axios
+      .get(`http://localhost:8080/getEmp/${empId}`)
+      .then((res) => {
+        setEmployee(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError("Error fetching employee details.");
+        setLoading(false);
+      });
+  }, [empId]);
+
+  if (loading) {
     return (
-      <div className="text-center mt-5">
-        <h4>No employee data found. Please login again.</h4>
-        <button className="btn btn-warning mt-3" onClick={() => navigate('/EmployeeLogin')}>Go to Login</button>
+      <div className="d-flex vh-100 justify-content-center align-items-center bg-light">
+        <div className="spinner-border text-warning" role="status">
+          <span className="visually-hidden">Loading…</span>
+        </div>
       </div>
     );
   }
 
+  if (error) {
+    return (
+      <div className="d-flex vh-100 flex-column justify-content-center align-items-center bg-light">
+        <div className="alert alert-danger text-center" style={{ maxWidth: 400 }}>
+          {error}
+        </div>
+        <button className="btn btn-secondary" onClick={() => navigate(-1)}>
+          Go Back
+        </button>
+      </div>
+    );
+  }
+
+  if (!employee) return null;
+
+  // Formatting utility
+  function formatDate(date) {
+    if (!date) return "N/A";
+    return new Date(date).toLocaleDateString("en-IN");
+  }
+
   return (
-    <div className="container mt-4">
-      <div className="card p-4 shadow">
-        <h3 className="text-center mb-4">My Profile</h3>
-        <div className="row">
-          <div className="col-md-4 text-center">
-            <img
-              src="https://icons.veryicon.com/png/o/business/multi-color-financial-and-business-icons/user-139.png"
-              alt="profile"
-              className="rounded-circle"
-              width="150"
-              height="150"
-            />
-            <h5 className="mt-3">{employee.empName}</h5>
-            <p className="text-muted">ID: {employee.empId}</p>
+    <div className="container mt-5">
+      <div className="card shadow p-4" style={{ maxWidth: 750, margin: "auto" }}>
+        <div className="d-flex align-items-center mb-4">
+          <img
+            src="https://icons.veryicon.com/png/o/business/multi-color-financial-and-business-icons/user-139.png"
+            alt="profile"
+            className="rounded-circle shadow"
+            width="90"
+            height="90"
+            style={{ background: "#feca57", padding: 6, marginRight: 24 }}
+          />
+          <div>
+            <h3 className="mb-0">{employee.empName}</h3>
+            <small className="text-muted">Employee ID: <b>{employee.empId}</b></small>
+            <div className="text-muted">{employee.designation} - {employee.department}</div>
           </div>
-          <div className="col-md-8">
-            <h5>Contact Information</h5>
-            <p><strong>Email:</strong> {employee.email}</p>
-            <p><strong>Phone:</strong> {employee.phone || 'N/A'}</p>
-            <p><strong>Address:</strong> {employee.address || 'N/A'}</p>
+        </div>
+        <hr />
 
-            <h5 className="mt-3">Job Details</h5>
-            <p><strong>Department:</strong> {employee.department}</p>
-            <p><strong>Designation:</strong> {employee.designation}</p>
-            <p><strong>Date of Joining:</strong> {employee.doj}</p>
-            <p><strong>Salary (CTC):</strong> {employee.salary_ctc || 'N/A'}</p>
+        <div className="row mb-3">
+          <div className="col-md-6">
+            <h5 className="text-warning">Personal Details</h5>
+            <ul className="list-group list-group-flush mb-3">
+              <li className="list-group-item bg-light">
+                <b>Date of Birth:</b> {employee.dob}
+              </li>
+              <li className="list-group-item bg-light">
+                <b>Gender:</b> {employee.gender || "N/A"}
+              </li>
+              <li className="list-group-item bg-light">
+                <b>Nationality:</b> {employee.nationality || "N/A"}
+              </li>
+            </ul>
+          </div>
+          <div className="col-md-6">
+            <h5 className="text-warning">Job Details</h5>
+            <ul className="list-group list-group-flush mb-3">
+              <li className="list-group-item bg-light">
+                <b>Department:</b> {employee.department}
+              </li>
+              <li className="list-group-item bg-light">
+                <b>Designation:</b> {employee.designation}
+              </li>
+              <li className="list-group-item bg-light">
+                <b>Date of Joining:</b> {formatDate(employee.doj)}
+              </li>
+              <li className="list-group-item bg-light">
+                <b>Salary (CTC):</b> ₹{employee.salaryCtc?.toLocaleString() || "N/A"}
+              </li>
+            </ul>
+          </div>
+        </div>
 
-            <h5 className="mt-3">Personal Details</h5>
-            <p><strong>Gender:</strong> {employee.gender}</p>
-            <p><strong>Date of Birth:</strong> {employee.dob}</p>
-            <p><strong>Nationality:</strong> {employee.nationality}</p>
-            <p><strong>Aadhar:</strong> {employee.aadhar || 'N/A'}</p>
-            <p><strong>PAN:</strong> {employee.pan || 'N/A'}</p>
+        <div className="row mb-3">
+          <div className="col-md-6">
+            <h5 className="text-warning">Contact</h5>
+            <ul className="list-group list-group-flush mb-3">
+              <li className="list-group-item bg-light">
+                <b>Email:</b> {employee.email}
+              </li>
+              <li className="list-group-item bg-light">
+                <b>Phone:</b> {employee.phone || "N/A"}
+              </li>
+              <li className="list-group-item bg-light">
+                <b>Address:</b> {employee.address || "N/A"}
+              </li>
+            </ul>
+          </div>
+          <div className="col-md-6">
+            <h5 className="text-warning">IDs</h5>
+            <ul className="list-group list-group-flush mb-3">
+              <li className="list-group-item bg-light">
+                <b>Aadhar:</b> {employee.aadhar || "N/A"}
+              </li>
+              <li className="list-group-item bg-light">
+                <b>PAN:</b> {employee.pan || "N/A"}
+              </li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default MyProfile;
+export default EmployeeDetails;

@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import { useLocation } from "react-router-dom";
 
 
 
@@ -106,15 +106,17 @@ const SimpleLeaveRequest = () => {
   const [isHovered, setIsHovered] = React.useState(false);
   const [leaveDate, setLeaveDate] = useState('');
   const [reason, setReason] = useState('');
-  const [leaveType, setLeaveType] = useState('PL');
+  const [leaveType, setLeaveType] = useState('EL');
   const [leaveFor, setLeaveFor] = useState('Full Day'); // New state
    const [showConfirmation, setShowConfirmation] = useState(false);
+   const location = useLocation();
+  const empId = location.state?.employeeId;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const requestPayload = {
-      empId: '1001',
+      empId: empId,
       leaveType,
       leaveFor,
       reason,
@@ -139,7 +141,7 @@ const SimpleLeaveRequest = () => {
       <form style={styles.formContainer} onSubmit={handleSubmit}>
     
         <input
-          type="text"
+          type="date"
           style={styles.input}
           placeholder="Enter date"
           value={leaveDate}
@@ -158,7 +160,7 @@ const SimpleLeaveRequest = () => {
           value={leaveType}
           onChange={(e) => setLeaveType(e.target.value)}
         >
-          <option value="PL">Earned Leave</option>
+          <option value="EL">Earned Leave</option>
           <option value="CL">Causal Leave</option>
           <option value="SL">Sick Leave</option>
         </select>

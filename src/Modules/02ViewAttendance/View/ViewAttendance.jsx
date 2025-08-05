@@ -137,7 +137,6 @@ export default function ViewAttendance() {
             <td className='headData'>Month</td>
             <td className='headData'>Year</td>
             <td className='headData'>Clock In Date</td>
-            <td className='headData'>Clock In Time</td>
             <td className='headData'>Status</td>
           </tr>
         </thead>
@@ -154,7 +153,6 @@ export default function ViewAttendance() {
                 <td className='empData'>{empData.month}</td>
                 <td className='empData'>{empData.year}</td>
                 <td className='empData'>{empData.clockInDate}</td>
-                <td className='empData'>{empData.clockInTime}</td>
                 <td className='empData'>{empData.status}</td>
               </tr>
             ))
