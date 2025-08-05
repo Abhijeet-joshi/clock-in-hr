@@ -1,9 +1,11 @@
-import React from 'react';
+import React,{useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
 import applogo from '../../../Assets/applogo.png';
+import axios from 'axios';
 
-const SignupPage = () => {
+//hr login page
+const SignupPage = ({expectedDepartment}) => {
   const styles = {
     container: {
       display: 'flex',
@@ -53,16 +55,58 @@ const SignupPage = () => {
     buttonHover: {
       backgroundColor: '#e0b847',
       borderColor: '#e0b847',
-    }
+    },
+    errorCard: {
+    marginTop: '15px',
+    backgroundColor: '#f8d7da',
+    color: '#721c24',
+    padding: '10px',
+    borderRadius: '6px',
+    border: '1px solid #f5c6cb',
+    textAlign: 'center',
+  }
   };
 
   const [buttonHovered, setButtonHovered] = React.useState(false);
+   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
 
   const navigate = useNavigate();
 
+  const handleLogin = async(e) => {
+    e.preventDefault();
+
+    try{
+
+       const response = await axios.get('http://localhost:8080/showEmp');
+        const user = response.data.find(
+        (emp) => (emp.email === email || emp.empName === email) && emp.password === password
+      );
+
+      if (!user) return setError('Invalid credentials');
+
+      if (user.department.toLowerCase() !== expectedDepartment.toLowerCase()) {
+        return setError(`Access Denied: Not an authorized ${expectedDepartment.toUpperCase()} user`);
+      }
+
+      if (expectedDepartment === 'hr') {
+        navigate('/dashboard', { state: { user } });
+      } else {
+        navigate('/EmpDash', { state: { user } });
+      }
+
+
+
+    }
+    catch (err) {
+      setError('API error. Try again later.');
+    }
+  };
+
   return (
     <div style={styles.container}>
-      <form style={styles.formContainer}>
+      <form style={styles.formContainer} onSubmit={handleLogin}>
         <div className='divTitle'>
                   <img src={applogo} alt="App Logo" className='appImage' />
                   <div className='headerText'>
@@ -72,13 +116,14 @@ const SignupPage = () => {
         </div>
         <br/>
         <div className="form-group" style={styles.formGroup}>
-          <label htmlFor="username" style={styles.label}>Username</label>
+          <label htmlFor="username" style={styles.label}>Email</label>
           <input
             type="text"
             className="form-control"
             id="username"
-            
+            value={email}
             style={styles.input}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className="form-group" style={styles.formGroup}>
@@ -87,22 +132,24 @@ const SignupPage = () => {
             type="password"
             className="form-control"
             id="password"
+            value={password}
             
             style={styles.input}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
         <button
           type="submit"
           className="btn btn-primary"
-          onClick={()=>{
-            navigate('/dashboard');
-          }}
+         
           style={buttonHovered ? {...styles.button, ...styles.buttonHover} : styles.button}
           onMouseEnter={() => setButtonHovered(true)}
           onMouseLeave={() => setButtonHovered(false)}
         >
           Login
         </button>
+        {error && <div style={styles.errorCard}>{error}</div>}
+
       </form>
     </div>
   );

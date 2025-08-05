@@ -1,10 +1,12 @@
-import React from 'react';
+import React,{useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
 import applogo from '../../../Assets/applogo.png';
-import EmployeeDashboard from '../../06Employee/views/dashboard';
+import axios from 'axios';
+//import EmployeeDashboard from '../../06Employee/views/dashboard';
 
-const EmployeeLogin = () => {
+//employee login page
+const EmployeeLogin = ({expectedDepartment}) => {
   const styles = {
     container: {
       display: 'flex',
@@ -54,16 +56,68 @@ const EmployeeLogin = () => {
     buttonHover: {
       backgroundColor: '#e0b847',
       borderColor: '#e0b847',
-    }
+    },
+
+     errorCard: {
+    marginTop: '15px',
+    backgroundColor: '#f8d7da',
+    color: '#721c24',
+    padding: '10px',
+    borderRadius: '6px',
+    border: '1px solid #f5c6cb',
+    textAlign: 'center',
+  }
+
   };
 
   const [buttonHovered, setButtonHovered] = React.useState(false);
+   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
 
   const navigate = useNavigate();
 
+  const handleLogin = async(e) => {
+    e.preventDefault();
+
+    try{
+
+       const response = await axios.get('http://localhost:8080/showEmp');
+        const user = response.data.find(
+        (emp) => (emp.email === email || emp.empName === email) && emp.password === password
+      );
+
+      if (!user) return setError('Invalid credentials');
+
+      if (user.department.toLowerCase() === expectedDepartment.toLowerCase()&& user.department.toLowerCase() !== expectedDepartment.toLowerCase()) {
+        return setError(`Access Denied: It is an authorized ${expectedDepartment.toUpperCase()} user`);
+      }
+     
+    
+
+      if (expectedDepartment !== 'hr') {
+        navigate('/', { state: { user } });
+      }
+      else if (expectedDepartment === 'hr') {
+
+        navigate('/EmpDash', { state: { user } });
+        
+      }
+      else {
+        navigate('/EmpDash', { state: { user } });
+      }
+
+
+
+    }
+    catch (err) {
+      setError('API error. Try again later.');
+    }
+  };
+
   return (
     <div style={styles.container}>
-      <form style={styles.formContainer}>
+      <form style={styles.formContainer}  onSubmit={handleLogin}>
         <div className='divTitle'>
                   <img src={applogo} alt="App Logo" className='appImage' />
                   <div className='headerText'>
@@ -78,7 +132,8 @@ const EmployeeLogin = () => {
             type="text"
             className="form-control"
             id="username"
-            
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             style={styles.input}
           />
         </div>
@@ -88,22 +143,22 @@ const EmployeeLogin = () => {
             type="password"
             className="form-control"
             id="password"
-            
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             style={styles.input}
           />
         </div>
         <button
           type="submit"
           className="btn btn-primary"
-          onClick={()=>{
-            navigate('/EmpDash');
-          }}
+         
           style={buttonHovered ? {...styles.button, ...styles.buttonHover} : styles.button}
           onMouseEnter={() => setButtonHovered(true)}
           onMouseLeave={() => setButtonHovered(false)}
         >
           Login
         </button>
+         {error && <div style={styles.errorCard}>{error}</div>}
       </form>
     </div>
   );

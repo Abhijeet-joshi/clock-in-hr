@@ -158,9 +158,9 @@ const SimpleLeaveRequest = () => {
           value={leaveType}
           onChange={(e) => setLeaveType(e.target.value)}
         >
-          <option value="PL">PL</option>
-          <option value="CL">CL</option>
-          <option value="SL">SL</option>
+          <option value="PL">Earned Leave</option>
+          <option value="CL">Causal Leave</option>
+          <option value="SL">Sick Leave</option>
         </select>
       
 

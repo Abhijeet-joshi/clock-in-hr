@@ -1,15 +1,14 @@
 import applogo from '../../../Assets/applogo.png';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-
 import MyAttendance from "./myAttendance";
 import MyLeaves from "./myLeaves";
 import RequestLeave from "./requestLeave";
+import MyProfile from './myProfile';
 
 
 
-export default function PanelAndScreen() {
+export default function PanelAndScreen(employee) {
   const [highlighted, setHighlighted] = useState('item-1');
   const handleClick = (id) => {
     setHighlighted(id);
@@ -18,12 +17,16 @@ export default function PanelAndScreen() {
 
   const renderPage = () => {
     switch (highlighted) {
-      case 'item-1':
-        return <MyAttendance />;
+
+       case 'item-1':
+        return <MyProfile employee={employee} />;
       case 'item-2':
-        return <MyLeaves/>;
+        return <MyAttendance />;
       case 'item-3':
+        return <MyLeaves/>;
+      case 'item-4':
         return <RequestLeave/>;
+     
       default:
         return null;
     }
@@ -37,18 +40,25 @@ export default function PanelAndScreen() {
         <div className='divTitle'>
           <img src={applogo} alt="App Logo" className='appImage' />
           <div className='headerText'>
-            <p className='title'>ClockIn</p>
+            <p className='title'>ClockIn  </p>
+            
             <p className='subTitle'>An Easy HR Assistance App</p>
           </div>
+          
         </div>
+        
+        
         <br />
+        
         <br />
-        {['item-1', 'item-2', 'item-3', 'item-4'].map((id, index) => {
+        {['item-1', 'item-2', 'item-3', 'item-4', 'item-5'].map((id, index) => {
           const labels = [
+            'My Profile',
             'My Attendance',
             'My Leaves',
             'Leave Requests',
-            'Log out'
+            
+            'Log Out'
           ];
           return (
             <div
@@ -58,7 +68,7 @@ export default function PanelAndScreen() {
               onClick={
                 () => {
                   handleClick(id);
-                  if(id==='item-4'){
+                  if(id==='item-5'){
                     navigate('/');
                   }
                 }
