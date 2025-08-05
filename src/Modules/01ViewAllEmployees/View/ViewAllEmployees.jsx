@@ -9,8 +9,9 @@ export default function ViewAllEmployees() {
     const [employees, setEmployees] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [searchTerm, setSearchTerm] = useState('');
 
-    useEffect(() => { 
+    useEffect(() => {
         const fetchEmployees = async () => {
             try {
                 const response = await fetch('http://localhost:8080/showEmp', {
@@ -37,11 +38,29 @@ export default function ViewAllEmployees() {
         fetchEmployees();
     }, []);
 
+    // Filter employees based on searchTerm (case insensitive)
+    const filteredEmployees = employees.filter(emp =>
+        emp.empId.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     if (loading) return <div className="statusMessage">Loading employees...</div>;
     if (error) return <div className="statusMessage error">Error: {error}</div>;
 
     return (
         <div className="viewContainer">
+            <div className='searchFieldDiv'>
+                <input
+                    type="text"
+                    placeholder='Enter Employee ID'
+                    value={searchTerm}
+                    onChange={e => setSearchTerm(e.target.value)}
+                />
+                {/* The Search button can be kept for UI, but filtering happens instantly on input */}
+                <div className='button'>
+                    Search
+                </div>
+            </div>
+
             <table className="tableStyle">
                 <thead className="tableHead">
                     <tr>
@@ -54,22 +73,26 @@ export default function ViewAllEmployees() {
                     </tr>
                 </thead>
                 <tbody>
-                    {employees.map((emp) => (
-                        <tr key={emp.empId}>
-                            <td className="empData">{emp.empId}</td>
-                            <td className="empData">{emp.empName}</td>
-                            <td className="empData">{emp.department}</td>
-                            <td className="empData">{emp.designation}</td>
-                            <td className="empData">{emp.email}</td>
-                            <td className="highlightedData">
-                                <button
-                                    onClick={() => navigate('/ViewEmployee', { state: { employee: emp } })}
-                                >
-                                    View Employee
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
+                    {filteredEmployees.length > 0 ? (
+                        filteredEmployees.map((emp) => (
+                            <tr key={emp.empId}>
+                                <td className="empData">{emp.empId}</td>
+                                <td className="empData">{emp.empName}</td>
+                                <td className="empData">{emp.department}</td>
+                                <td className="empData">{emp.designation}</td>
+                                <td className="empData">{emp.email}</td>
+                                <td className="highlightedData">
+                                    <button
+                                        onClick={() => navigate('/ViewEmployee', { state: { employee: emp } })}
+                                    >
+                                        View Employee
+                                    </button>
+                                </td>
+                            </tr>
+                        ))
+                    ) : (
+                        <tr><td colSpan={6} style={{ textAlign: 'center' }}>No employees found</td></tr>
+                    )}
                 </tbody>
             </table>
 

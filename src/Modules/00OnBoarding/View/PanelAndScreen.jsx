@@ -49,11 +49,11 @@ export default function PanelAndScreen() {
         </div>
         <br />
         <br />
-        {['item-1', 'item-2', 'item-4', 'item-5', 'item-6'].map((id, index) => {
+        {['item-1', 'item-2', 'item-5', 'item-6'].map((id, index) => {
           const labels = [
             'View All Employees',
             'View Attendance',
-            'Manage Leaves',
+            
             'Leave Requests',
             'Log out'
           ];
