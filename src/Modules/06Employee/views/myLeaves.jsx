@@ -5,12 +5,14 @@ export default function myLeaves(){
     const attendance = [
         {
             'DATE' : '04/08/2025',
-            'REASON' : 'Ghar mein shadi.'
+            'REASON' : 'Ghar mein shadi.',
+            'STATUS' : 'Rejected'
         },
         
         {
             'DATE' : '05/08/2025',
-            'REASON' : 'Kutta bimar hai.'
+            'REASON' : 'Kutta bimar hai.',
+            'STATUS' : 'Approved'
         },
         
     ];
@@ -32,6 +34,8 @@ export default function myLeaves(){
                         <td className='headData'>DATE</td>
                         <td className='headData'></td>
                         <td className='headData'>REASON</td>
+                        <td className='headData'></td>
+                        <td className='headData'>STATUS</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,6 +44,8 @@ export default function myLeaves(){
                         <td className='empData'>{data.DATE}</td>
                         <td className='empData'></td>
                         <td className='empData'>{data.REASON}</td>
+                        <td className='empData'></td>
+                        <td className='empData'>{data.STATUS}</td>
                         </tr>
                     })}
                 </tbody>
