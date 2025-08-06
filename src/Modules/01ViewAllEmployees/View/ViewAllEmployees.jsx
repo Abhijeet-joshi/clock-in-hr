@@ -55,10 +55,6 @@ export default function ViewAllEmployees() {
                     value={searchTerm}
                     onChange={e => setSearchTerm(e.target.value)}
                 />
-                {/* The Search button can be kept for UI, but filtering happens instantly on input */}
-                <div className='button'>
-                    Search
-                </div>
             </div>
 
             <table className="tableStyle">
@@ -99,7 +95,7 @@ export default function ViewAllEmployees() {
             <button
                 className="fab"
                 title="Add Employee"
-                onClick={() => navigate('/AddEmployee')}
+                onClick={() => navigate('/AddNewEmployee')}
             >
                 +
             </button>
