@@ -169,25 +169,18 @@ export default function AddEmployee() {
           }}
         >
           {[
-            { label: "Name", name: "empName", type: "text" },
-            { label: "Aadhar", name: "aadhar", type: "text" },
-            { label: "Address", name: "address", type: "text" },
-            { label: "Department", name: "department", type: "text" },
-            { label: "Designation", name: "designation", type: "text" },
-            { label: "Date of Birth", name: "dob", type: "text", placeholder: "DD/MM/YYYY" },
-            { label: "Date of Joining", name: "doj", type: "text", placeholder: "DD/MM/YYYY" },
-            { label: "Email", name: "email", type: "email" },
-          ].map(({ label, name, type, placeholder }) => (
+            { value: "Name", name: "empName", type: "text" },
+            { value: "Aadhar", name: "aadhar", type: "text" },
+            { value: "Address", name: "address", type: "text" },
+            { value: "Department", name: "department", type: "text" },
+            { value: "Designation", name: "designation", type: "text" },
+            { value: "Date of Birth", name: "dob", type: "text", placeholder: "DD/MM/YYYY" },
+            { value: "Date of Joining", name: "doj", type: "text", placeholder: "DD/MM/YYYY" },
+            { value: "Email", name: "email", type: "email" },
+          ].map(({ value, name, type, placeholder }) => (
             <div key={name}>
-              <label
-                style={{
-                  fontWeight: 600,
-                  fontSize: 16,
-                  display: "block",
-                }}
-                htmlFor={name}
-              >
-                {label}
+              <label style={{fontWeight: 600, fontSize: 16,display: "block",}}>
+{value}
                 <input
                   type={type}
                   id={name}

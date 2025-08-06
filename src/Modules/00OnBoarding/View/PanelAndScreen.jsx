@@ -26,8 +26,7 @@ export default function PanelAndScreen() {
         return <ViewAllEmployees />;
       case 'item-2':
         return <ViewAttendance />;
-      case 'item-4':
-        return <ManageLeaves />;
+      
       case 'item-5':
         return <LeaveRequests />;
       default:

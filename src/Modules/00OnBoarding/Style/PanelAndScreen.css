@@ -79,10 +79,6 @@
 .contentArea {
   flex: 1;
   padding: 30px;
-  /* Add below if you want only the right side to be scrollable 
-  overflow-y: auto;
-  */
-  /* background: #f7f7f7; // Optional, for visual separation */
 }
 
 /* Responsive (optional) */

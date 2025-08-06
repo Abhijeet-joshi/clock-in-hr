@@ -65,7 +65,7 @@ function EmployeeDetails() {
                                     <p><strong>Department:</strong> {employee.department}</p>
                                     <p><strong>Designation:</strong> {employee.designation}</p>
                                     <p><strong>Date of Joining:</strong> {employee.doj || 'N/A'}</p>
-                                    <p><strong>Salary (CTC):</strong> {employee.salary_ctc || 'N/A'}</p>
+                                    <p><strong>Salary (CTC):</strong> {employee["salaryCtc"] || 'N/A'}</p>
                                 </div>
                             </div>
                         </div>

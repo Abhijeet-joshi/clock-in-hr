@@ -91,12 +91,10 @@ const SignupPage = ({expectedDepartment}) => {
       }
 
       if (expectedDepartment === 'hr') {
-        navigate('/dashboard', { state: { user } });
+        navigate('/dashboard', { state: { user } });//hr dashboard
       } else {
-        navigate('/EmpDash', { state: { user } });
+        navigate('/', { state: { user } });
       }
-
-
 
     }
     catch (err) {

@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import '../../../CommonUtilities/tableLayout.css';
 import '../Style/LeaveRequests.css';
 
-export default function Page5() {
+export default function LeaveRequest() {
   const [allRequests, setAllRequests] = useState([]);
   const [searchEmpId, setSearchEmpId] = useState('');
   const [searchDate, setSearchDate] = useState('');
   const [message, setMessage] = useState('');
-  const [displayDate, setDisplayDate] = useState('2025-07-26');
+  const [displayDate, setDisplayDate] = useState('');
 
   useEffect(() => {
     fetchRequests();
@@ -121,7 +121,7 @@ export default function Page5() {
             </tr>
           ) : (
             allRequests.map((req) => (
-              <tr key={req.reqId || req.lid}>
+              <tr>
                 <td className='empData'>{req.reqId || req.lid}</td>
                 <td className='empData'>{req.empId || req.eid}</td>
                 <td className='empData'>{req.leaveType || req.type}</td>
@@ -136,7 +136,6 @@ export default function Page5() {
       req.status === 'Approved' ? 'status-approved' :
       req.status === 'Pending' ? 'status-pending' : 'status-rejected'
     }`}
-    disabled
   >
     {req.status}
   </button>

@@ -33,15 +33,9 @@ export default function ViewAttendance() {
       }
 
       const data = await res.json();
-
-      if (!Array.isArray(data)) {
-        console.warn('Expected an array but got:', data);
-        setEmployees(data ? [data] : []);
-        setMessage(data ? '' : 'No attendance found for given Employee ID.');
-      } else {
-        setEmployees(data);
-        setMessage(data.length === 0 ? 'No attendance found for given Employee ID.' : '');
-      }
+      setEmployees(data);
+      setMessage(data.length === 0 ? 'No attendance found for given Employee ID.' : '');
+      
     } catch (err) {
       console.error('Error fetching attendance by Employee ID:', err);
       setEmployees([]);
