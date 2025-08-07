@@ -9,6 +9,7 @@ import EmployeeLogin from './Modules/00OnBoarding/View/EmployeeLogin';
 import MyProfile from './Modules/06Employee/views/myProfile';
 //import HRLogin from './Modules/00OnBoarding/View/LoginSignup';
 import EmployeeDashboard from './Modules/06Employee/views/dashboard';
+import HRDetails from './Modules/07HRProfile/View/HrProfile';
 
 function App() { 
   return (
@@ -23,6 +24,7 @@ function App() {
         {/* <Route path="/HRLogin" element={<HRLogin />} /> */}
         <Route path="/EmpDash" element={<EmployeeDashboard/>} />
         <Route path="/myprofile" element={<MyProfile />} />
+        <Route path="/hrprofile" element={<HRDetails />} />
       </Routes>
     </Router>
   );

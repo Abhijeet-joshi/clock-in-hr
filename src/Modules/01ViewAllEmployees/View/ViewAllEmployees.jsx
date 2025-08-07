@@ -79,10 +79,22 @@ export default function ViewAllEmployees() {
                                 <td className="empData">{emp.email}</td>
                                 <td className="highlightedData">
                                     <button
-                                        onClick={() => navigate('/ViewEmployee', { state: { employee: emp } })}
-                                    >
-                                        View Employee
-                                    </button>
+  style={{
+    backgroundColor: '#feca57',
+    color: '#000', // black text for good contrast
+    border: 'none',
+    borderRadius: '4px',
+    padding: '6px 16px',
+    margin: '3px',
+    fontSize: '0.875rem',
+    fontWeight: '500',
+    cursor: 'pointer',
+  }}
+  onClick={() => navigate('/ViewEmployee', { state: { employee: emp } })}
+>
+  View Employee
+</button>
+
                                 </td>
                             </tr>
                         ))

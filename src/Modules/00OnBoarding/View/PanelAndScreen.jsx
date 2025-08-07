@@ -7,6 +7,7 @@ import ViewAttendance from '../../02ViewAttendance/View/ViewAttendance';
 import ViewPayslip from '../../03ViewPayslips/View/ViewPayslip';
 import ManageLeaves from '../../04ManageLeaves/View/ManageLeaves';
 import LeaveRequests from '../../05LeaveRequests/View/LeaveRequests';
+import HRDetails from '../../07HRProfile/View/HrProfile';
 
 export default function PanelAndScreen() {
   const [highlighted, setHighlighted] = useState('item-1');
@@ -26,7 +27,8 @@ export default function PanelAndScreen() {
         return <ViewAllEmployees />;
       case 'item-2':
         return <ViewAttendance />;
-      
+      case 'item-3':
+        return <HRDetails/>;
       case 'item-5':
         return <LeaveRequests />;
       default:
@@ -48,11 +50,11 @@ export default function PanelAndScreen() {
         </div>
         <br />
         <br />
-        {['item-1', 'item-2', 'item-5', 'item-6'].map((id, index) => {
+        {['item-1', 'item-2', 'item-3', 'item-5', 'item-6'].map((id, index) => {
           const labels = [
             'View All Employees',
             'View Attendance',
-            
+            'My Profile',
             'Leave Requests',
             'Log out'
           ];

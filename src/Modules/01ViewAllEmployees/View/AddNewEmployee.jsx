@@ -179,8 +179,14 @@ export default function AddEmployee() {
             { value: "Email", name: "email", type: "email" },
           ].map(({ value, name, type, placeholder }) => (
             <div key={name}>
-              <label style={{fontWeight: 600, fontSize: 16,display: "block",}}>
-{value}
+              <label
+                style={{
+                  fontWeight: 600,
+                  fontSize: 16,
+                  display: "block",
+                }}
+              >
+                {value}
                 <input
                   type={type}
                   id={name}
@@ -409,15 +415,37 @@ export default function AddEmployee() {
             </label>
           </div>
 
-          {/* Submit button */}
+          {/* Submit and Cancel buttons */}
           <div
             style={{
               gridColumn: "1/-1",
               display: "flex",
               justifyContent: "flex-end",
               alignItems: "center",
+              gap: "12px",
             }}
           >
+            <button
+              type="button"
+              onClick={() => window.history.back()}
+              style={{
+                background: THEME.errorColor,
+                color: "#fff",
+                border: "none",
+                borderRadius: 8,
+                padding: "0 36px",
+                fontSize: 20,
+                fontWeight: 700,
+                boxShadow: "0 2px 8px rgba(255, 82, 82, 0.6)",
+                height: inputHeight,
+                cursor: "pointer",
+                transition: "background 0.2s",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = "#ff3333")}
+              onMouseLeave={(e) => (e.currentTarget.style.background = THEME.errorColor)}
+            >
+              Cancel
+            </button>
             <button
               type="submit"
               disabled={submitting}
@@ -431,7 +459,6 @@ export default function AddEmployee() {
                 fontWeight: 700,
                 boxShadow: "0 2px 8px #feca5733",
                 height: inputHeight,
-                marginTop: 16,
                 cursor: submitting ? "not-allowed" : "pointer",
                 transition: "background 0.2s",
               }}
